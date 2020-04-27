@@ -5,15 +5,15 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema xtraildb
+-- Schema xtrailsdb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `xtraildb` ;
+DROP SCHEMA IF EXISTS `xtrailsdb` ;
 
 -- -----------------------------------------------------
--- Schema xtraildb
+-- Schema xtrailsdb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `xtraildb` DEFAULT CHARACTER SET utf8 ;
-USE `xtraildb` ;
+CREATE SCHEMA IF NOT EXISTS `xtrailsdb` DEFAULT CHARACTER SET utf8 ;
+USE `xtrailsdb` ;
 
 -- -----------------------------------------------------
 -- Table `Location`
@@ -142,11 +142,11 @@ CREATE TABLE IF NOT EXISTS `Comment` (
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
-DROP USER IF EXISTS trailuser;
+DROP USER IF EXISTS user@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-CREATE USER 'trailuser' IDENTIFIED BY 'trailuser';
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'user';
 
-GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'trailuser';
+GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'user'@'localhost';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -156,7 +156,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- Data for table `Location`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `xtraildb`;
+USE `xtrailsdb`;
 INSERT INTO `Location` (`id`, `city`, `park`, `state`, `longitude`, `latitude`, `county`, `street`, `zipcode`) VALUES (1, 'Centennial', 'idk', 'CO', NULL, NULL, 'Arapahoe', NULL, NULL);
 INSERT INTO `Location` (`id`, `city`, `park`, `state`, `longitude`, `latitude`, `county`, `street`, `zipcode`) VALUES (2, 'High line Canal Trail', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `Location` (`id`, `city`, `park`, `state`, `longitude`, `latitude`, `county`, `street`, `zipcode`) VALUES (3, 'Lakewood', 'Sloans Lake Park', 'CO', -105.05258, 39.66421, 'Arrapahoe', NULL, 80111);
@@ -170,7 +170,7 @@ COMMIT;
 -- Data for table `User`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `xtraildb`;
+USE `xtrailsdb`;
 INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`) VALUES (1, 'matt', 'matt@matt.com', 1, NULL, NULL, 'cycling', NULL, 1);
 INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`) VALUES (2, 'vanessa', 'vanessa@aol.com', 1, NULL, NULL, 'running', NULL, 2);
 INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`) VALUES (3, 'james', 'james@aol.com', 1, NULL, NULL, 'mountain biking', NULL, 3);
@@ -182,7 +182,7 @@ COMMIT;
 -- Data for table `Trail`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `xtraildb`;
+USE `xtrailsdb`;
 INSERT INTO `Trail` (`id`, `name`, `location`, `dogFriendly`, `hashtags`, `description`, `photos`, `rating`, `review`, `routeType`, `distance`, `elevationGain`, `articleLinks`, `directions`, `share`, `difficulty`, `weather`, `Comment_id`, `Location_id`) VALUES (1, 'high line canal', 'greenwood village', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 4);
 INSERT INTO `Trail` (`id`, `name`, `location`, `dogFriendly`, `hashtags`, `description`, `photos`, `rating`, `review`, `routeType`, `distance`, `elevationGain`, `articleLinks`, `directions`, `share`, `difficulty`, `weather`, `Comment_id`, `Location_id`) VALUES (2, 'ken caryl trail', 'ken caryl', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 5);
 
@@ -193,7 +193,7 @@ COMMIT;
 -- Data for table `Playlist`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `xtraildb`;
+USE `xtrailsdb`;
 INSERT INTO `Playlist` (`id`, `name`, `description`, `hashtags`, `User_id`) VALUES (1, '5 milers', '5 mile trails i enjoy', NULL, 1);
 INSERT INTO `Playlist` (`id`, `name`, `description`, `hashtags`, `User_id`) VALUES (2, 'bike routes', 'sweet mtn bike routes', NULL, 3);
 
@@ -204,7 +204,7 @@ COMMIT;
 -- Data for table `Comment`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `xtraildb`;
+USE `xtrailsdb`;
 INSERT INTO `Comment` (`id`, `actualComment`, `User_id`, `Trail_id`, `datePosted`) VALUES (1, 'this trail is awesome', 1, 1, '2020-04-27');
 INSERT INTO `Comment` (`id`, `actualComment`, `User_id`, `Trail_id`, `datePosted`) VALUES (2, 'this playlist is awesome', 3, 2, '2020-04-27');
 

@@ -1,5 +1,3 @@
-
-persistance.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1"
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
@@ -9,7 +7,7 @@ persistance.xml
 	<persistence-unit name="XTrailsPU">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<class>com.skilldistillery.frameworkautomation.entities.User</class>
+		<class>com.mattaldrete.entities.User</class>
 		<class>com.skilldistillery.frameworkautomation.entities.Template</class>
 		<class>com.skilldistillery.frameworkautomation.entities.Comment</class>
 		<class>com.skilldistillery.frameworkautomation.entities.Rating</class>
@@ -18,9 +16,10 @@ persistance.xml
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/xtrailsdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />
-			<property name="javax.persistence.jdbc.user" value="trailuser" />
+			<property name="javax.persistence.jdbc.user"
+				value="user" />
 			<property name="javax.persistence.jdbc.password"
-				value="trailuser" />
+				value="user" />
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />
 
