@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `userName` VARCHAR(200) NOT NULL,
   `email` VARCHAR(200) NULL,
-  `active` INT NULL,
+  `active` TINYINT NULL,
   `playlist` VARCHAR(45) NULL,
   `comments` VARCHAR(500) NULL,
   `favoriteActivities` VARCHAR(500) NULL,
