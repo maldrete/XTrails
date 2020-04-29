@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +23,12 @@ public class Location {
 	private String county;
 	private String street;
 	private Integer zipcode;
+
+	@OneToOne(mappedBy = "location")
+	private Trail trail;
+	
+	@OneToOne(mappedBy = "location")
+	private User user;
 
 	public Integer getId() {
 		return id;
@@ -95,15 +102,23 @@ public class Location {
 		this.zipcode = zipcode;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "Location [id=" + id + ", city=" + city + ", park=" + park + ", state=" + state + ", longitude="
 				+ longitude + ", latitude=" + latitude + ", county=" + county + ", street=" + street + ", zipcode="
-				+ zipcode + "]";
+				+ zipcode + ", user=" + user + "]";
 	}
 
 	public Location(Integer id, String city, String park, String state, Double longitude, Double latitude,
-			String county, String street, Integer zipcode) {
+			String county, String street, Integer zipcode, User user) {
 		super();
 		this.id = id;
 		this.city = city;
@@ -114,6 +129,7 @@ public class Location {
 		this.county = county;
 		this.street = street;
 		this.zipcode = zipcode;
+		this.user = user;
 	}
 
 	public Location() {

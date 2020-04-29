@@ -1,11 +1,14 @@
 package com.mattaldrete.enitities;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,13 +22,18 @@ public class User {
 	private String userName;
 	private String email;
 	private Boolean active;
-	private String playist;
-	private String comments;
 	private String favoriteActivities;
 	private String stats;
 
+	@OneToMany(mappedBy = "user")
+	private List<Comment> comment;
+
+	@OneToMany(mappedBy = "user")
+	private List<Playlist> playist;
+
+	@OneToOne
 	@JoinColumn(name = "Location_id")
-	private Integer location;
+	private Location location;
 
 	public Integer getId() {
 		return id;
@@ -59,22 +67,6 @@ public class User {
 		this.active = active;
 	}
 
-	public String getPlayist() {
-		return playist;
-	}
-
-	public void setPlayist(String playist) {
-		this.playist = playist;
-	}
-
-	public String getComments() {
-		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-
 	public String getFavoriteActivities() {
 		return favoriteActivities;
 	}
@@ -91,32 +83,48 @@ public class User {
 		this.stats = stats;
 	}
 
-	public Integer getLocation() {
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
+	public List<Playlist> getPlayist() {
+		return playist;
+	}
+
+	public void setPlayist(List<Playlist> playist) {
+		this.playist = playist;
+	}
+
+	public Location getLocation() {
 		return location;
 	}
 
-	public void setLocation(Integer location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", email=" + email + ", active=" + active + ", playist="
-				+ playist + ", comments=" + comments + ", favoriteActivities=" + favoriteActivities + ", stats=" + stats
-				+ ", location=" + location + "]";
+		return "User [id=" + id + ", userName=" + userName + ", email=" + email + ", active=" + active
+				+ ", favoriteActivities=" + favoriteActivities + ", stats=" + stats + ", comment=" + comment
+				+ ", playist=" + playist + ", location=" + location + "]";
 	}
 
-	public User(Integer id, String userName, String email, Boolean active, String playist, String comments,
-			String favoriteActivities, String stats, Integer location) {
+	public User(Integer id, String userName, String email, Boolean active, String favoriteActivities, String stats,
+			List<Comment> comment, List<Playlist> playist, Location location) {
 		super();
 		this.id = id;
 		this.userName = userName;
 		this.email = email;
 		this.active = active;
-		this.playist = playist;
-		this.comments = comments;
 		this.favoriteActivities = favoriteActivities;
 		this.stats = stats;
+		this.comment = comment;
+		this.playist = playist;
 		this.location = location;
 	}
 

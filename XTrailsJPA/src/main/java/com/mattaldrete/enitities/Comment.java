@@ -1,13 +1,17 @@
 package com.mattaldrete.enitities;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "comment")
@@ -19,13 +23,16 @@ public class Comment {
 
 	private String actualComment;
 
+	@ManyToOne
 	@JoinColumn(name = "User_id")
-	private Integer userId;
+	private User user;
 
+	@ManyToOne
 	@JoinColumn(name = "Trail_id")
-	private Integer trailId;
+	private Trail trail;
 
-	private Date datePosted;
+	
+	private LocalDate datePosted;
 
 	public Integer getId() {
 		return id;
@@ -43,47 +50,49 @@ public class Comment {
 		this.actualComment = actualComment;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public Integer getTrailId() {
-		return trailId;
+	public Trail getTrail() {
+		return trail;
 	}
 
-	public void setTrailId(Integer trailId) {
-		this.trailId = trailId;
+	public void setTrail(Trail trail) {
+		this.trail = trail;
 	}
 
-	public Date getDatePosted() {
+	
+
+	public LocalDate getDatePosted() {
 		return datePosted;
 	}
 
-	public void setDatePosted(Date datePosted) {
-		this.datePosted = datePosted;
-	}
-
-	public Comment() {
-
-	}
-
-	public Comment(Integer id, String actualComment, Integer userId, Integer trailId, Date datePosted) {
-		super();
-		this.id = id;
-		this.actualComment = actualComment;
-		this.userId = userId;
-		this.trailId = trailId;
+	public void setDatePosted(LocalDate datePosted) {
 		this.datePosted = datePosted;
 	}
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", actualComment=" + actualComment + ", userId=" + userId + ", trailId=" + trailId
+		return "Comment [id=" + id + ", actualComment=" + actualComment + ", user=" + user + ", trail=" + trail
 				+ ", datePosted=" + datePosted + "]";
+	}
+
+	public Comment(Integer id, String actualComment, User user, Trail trail, LocalDate datePosted) {
+		super();
+		this.id = id;
+		this.actualComment = actualComment;
+		this.user = user;
+		this.trail = trail;
+		this.datePosted = datePosted;
+	}
+
+	public Comment() {
+
 	}
 
 }

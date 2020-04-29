@@ -1,22 +1,26 @@
 package com.mattaldrete.enitities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "trail")
 public class Trail {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	private String name;
-	private String location;
+
 	private Boolean dogFriendly;
 	private String hashtags;
 	private String description;
@@ -25,20 +29,200 @@ public class Trail {
 	private String review;
 	private String routeType;
 	private String distance;
-	private Integer	elevationGain;
+	private Integer elevationGain;
 	private String articleLinks;
 	private String directions;
 	private String share;
 	private String difficulty;
 	private String weather;
-	
-	@JoinColumn(name = "Comment_id")
-	private Integer comment;
-	
+
+	@OneToMany(mappedBy = "trail")
+	private List<Comment> comment;
+
+	@OneToOne
 	@JoinColumn(name = "Location_id")
-	private Integer locationId;
-	
-	
-	
+	private Location location;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Boolean getDogFriendly() {
+		return dogFriendly;
+	}
+
+	public void setDogFriendly(Boolean dogFriendly) {
+		this.dogFriendly = dogFriendly;
+	}
+
+	public String getHashtags() {
+		return hashtags;
+	}
+
+	public void setHashtags(String hashtags) {
+		this.hashtags = hashtags;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
+	}
+
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
+	public String getRouteType() {
+		return routeType;
+	}
+
+	public void setRouteType(String routeType) {
+		this.routeType = routeType;
+	}
+
+	public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+
+	public Integer getElevationGain() {
+		return elevationGain;
+	}
+
+	public void setElevationGain(Integer elevationGain) {
+		this.elevationGain = elevationGain;
+	}
+
+	public String getArticleLinks() {
+		return articleLinks;
+	}
+
+	public void setArticleLinks(String articleLinks) {
+		this.articleLinks = articleLinks;
+	}
+
+	public String getDirections() {
+		return directions;
+	}
+
+	public void setDirections(String directions) {
+		this.directions = directions;
+	}
+
+	public String getShare() {
+		return share;
+	}
+
+	public void setShare(String share) {
+		this.share = share;
+	}
+
+	public String getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(String difficulty) {
+		this.difficulty = difficulty;
+	}
+
+	public String getWeather() {
+		return weather;
+	}
+
+	public void setWeather(String weather) {
+		this.weather = weather;
+	}
+
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	@Override
+	public String toString() {
+		return "Trail [id=" + id + ", name=" + name + ", dogFriendly=" + dogFriendly + ", hashtags=" + hashtags
+				+ ", description=" + description + ", photos=" + photos + ", rating=" + rating + ", review=" + review
+				+ ", routeType=" + routeType + ", distance=" + distance + ", elevationGain=" + elevationGain
+				+ ", articleLinks=" + articleLinks + ", directions=" + directions + ", share=" + share + ", difficulty="
+				+ difficulty + ", weather=" + weather + ", comment=" + comment + ", location=" + location + "]";
+	}
+
+	public Trail(int id, String name, Boolean dogFriendly, String hashtags, String description, String photos,
+			String rating, String review, String routeType, String distance, Integer elevationGain, String articleLinks,
+			String directions, String share, String difficulty, String weather, List<Comment> comment,
+			Location location) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.dogFriendly = dogFriendly;
+		this.hashtags = hashtags;
+		this.description = description;
+		this.photos = photos;
+		this.rating = rating;
+		this.review = review;
+		this.routeType = routeType;
+		this.distance = distance;
+		this.elevationGain = elevationGain;
+		this.articleLinks = articleLinks;
+		this.directions = directions;
+		this.share = share;
+		this.difficulty = difficulty;
+		this.weather = weather;
+		this.comment = comment;
+		this.location = location;
+	}
+
+	public Trail() {
+
+	}
 
 }

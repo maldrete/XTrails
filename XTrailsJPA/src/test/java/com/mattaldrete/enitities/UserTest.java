@@ -1,6 +1,8 @@
 package com.mattaldrete.enitities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,11 +12,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class UserTest {
-	
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private User user;
@@ -32,19 +35,56 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user =em.find(User.class, 1);
+		user = em.find(User.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		
+
 	}
 
-	@DisplayName("test entity field")
+	@Disabled
+	@DisplayName("test entity fields owned by table")
 	@Test
 	void test() {
 		assertEquals("matt", user.getUserName());
+		assertEquals(true, user.getActive());
+		assertEquals("matt@matt.com", user.getEmail());
+		assertEquals("cycling", user.getFavoriteActivities());
+		assertEquals(null, user.getStats());
+	}
+
+	@Disabled
+	@DisplayName("test playlist one to many relationship")
+	@Test
+	void test2() {
+		Playlist playlist1 = user.getPlayist().get(0);
+
+		assertEquals("5 milers", playlist1.getName());
+		assertEquals("5 mile trails i enjoy", playlist1.getDescription());
+		assertEquals(null, playlist1.getHashtags());
+		assertEquals("matt", playlist1.getUser().getUserName());
+
+	}
+
+	@Disabled
+	@DisplayName("test comment one to many relationship")
+	@Test
+	void test3() {
+		LocalDate ldDate = LocalDate.of(2020, 04, 27);
+
+		Comment comment1 = user.getComment().get(0);
+		assertEquals("this trail is awesome", comment1.getActualComment());
+		assertEquals(ldDate, comment1.getDatePosted());
+	}
+
+	@DisplayName("test location one to one relationship")
+	@Test
+	void test4() {
+		Location location = user.getLocation();
+		assertEquals("Centennial", location.getCity());
+
 	}
 
 }
