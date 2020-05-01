@@ -35,6 +35,7 @@ public class Trail {
 	private String share;
 	private String difficulty;
 	private String weather;
+	private String exercise;
 
 	@OneToMany(mappedBy = "trail")
 	private List<Comment> comment;
@@ -187,18 +188,27 @@ public class Trail {
 		this.location = location;
 	}
 
+	public String getExercise() {
+		return exercise;
+	}
+
+	public void setExercise(String exercise) {
+		this.exercise = exercise;
+	}
+
 	@Override
 	public String toString() {
 		return "Trail [id=" + id + ", name=" + name + ", dogFriendly=" + dogFriendly + ", hashtags=" + hashtags
 				+ ", description=" + description + ", photos=" + photos + ", rating=" + rating + ", review=" + review
 				+ ", routeType=" + routeType + ", distance=" + distance + ", elevationGain=" + elevationGain
 				+ ", articleLinks=" + articleLinks + ", directions=" + directions + ", share=" + share + ", difficulty="
-				+ difficulty + ", weather=" + weather + ", comment=" + comment + ", location=" + location + "]";
+				+ difficulty + ", weather=" + weather + ", exercise=" + exercise + ", comment=" + comment
+				+ ", location=" + location + "]";
 	}
 
 	public Trail(int id, String name, Boolean dogFriendly, String hashtags, String description, String photos,
 			String rating, String review, String routeType, String distance, Integer elevationGain, String articleLinks,
-			String directions, String share, String difficulty, String weather, List<Comment> comment,
+			String directions, String share, String difficulty, String weather, String exercise, List<Comment> comment,
 			Location location) {
 		super();
 		this.id = id;
@@ -217,6 +227,7 @@ public class Trail {
 		this.share = share;
 		this.difficulty = difficulty;
 		this.weather = weather;
+		this.exercise = exercise;
 		this.comment = comment;
 		this.location = location;
 	}

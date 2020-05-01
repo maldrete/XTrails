@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `favoriteActivities` VARCHAR(500) NULL,
   `stats` VARCHAR(500) NULL,
   `Location_id` INT NULL,
+  `role` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_User_Location_idx` (`Location_id` ASC),
   CONSTRAINT `fk_User_Location`
@@ -84,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `Trail` (
   `weather` VARCHAR(500) NULL,
   `Comment_id` INT NULL,
   `Location_id` INT NOT NULL,
+  `exercise` VARCHAR(200) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Trail_Location1_idx` (`Location_id` ASC),
   CONSTRAINT `fk_Trail_Location1`
@@ -171,9 +173,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `xtrailsdb`;
-INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`) VALUES (1, 'matt', 'matt@matt.com', 1, NULL, NULL, 'cycling', NULL, 1);
-INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`) VALUES (2, 'vanessa', 'vanessa@aol.com', 1, NULL, NULL, 'running', NULL, 2);
-INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`) VALUES (3, 'james', 'james@aol.com', 1, NULL, NULL, 'mountain biking', NULL, 3);
+INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`) VALUES (1, 'matt', 'matt@matt.com', 1, NULL, NULL, 'cycling', NULL, 1, NULL);
+INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`) VALUES (2, 'vanessa', 'vanessa@aol.com', 1, NULL, NULL, 'running', NULL, 2, NULL);
+INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`) VALUES (3, 'james', 'james@aol.com', 1, NULL, NULL, 'mountain biking', NULL, 3, NULL);
 
 COMMIT;
 
@@ -183,8 +185,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `xtrailsdb`;
-INSERT INTO `Trail` (`id`, `name`, `location`, `dogFriendly`, `hashtags`, `description`, `photos`, `rating`, `review`, `routeType`, `distance`, `elevationGain`, `articleLinks`, `directions`, `share`, `difficulty`, `weather`, `Comment_id`, `Location_id`) VALUES (1, 'high line canal', 'greenwood village', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 4);
-INSERT INTO `Trail` (`id`, `name`, `location`, `dogFriendly`, `hashtags`, `description`, `photos`, `rating`, `review`, `routeType`, `distance`, `elevationGain`, `articleLinks`, `directions`, `share`, `difficulty`, `weather`, `Comment_id`, `Location_id`) VALUES (2, 'ken caryl trail', 'ken caryl', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 5);
+INSERT INTO `Trail` (`id`, `name`, `location`, `dogFriendly`, `hashtags`, `description`, `photos`, `rating`, `review`, `routeType`, `distance`, `elevationGain`, `articleLinks`, `directions`, `share`, `difficulty`, `weather`, `Comment_id`, `Location_id`, `exercise`) VALUES (1, 'high line canal', 'greenwood village', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 4, NULL);
+INSERT INTO `Trail` (`id`, `name`, `location`, `dogFriendly`, `hashtags`, `description`, `photos`, `rating`, `review`, `routeType`, `distance`, `elevationGain`, `articleLinks`, `directions`, `share`, `difficulty`, `weather`, `Comment_id`, `Location_id`, `exercise`) VALUES (2, 'ken caryl trail', 'ken caryl', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 5, NULL);
 
 COMMIT;
 

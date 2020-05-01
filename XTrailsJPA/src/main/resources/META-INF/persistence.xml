@@ -8,10 +8,9 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<class>com.mattaldrete.entities.User</class>
-		<class>com.skilldistillery.frameworkautomation.entities.Template</class>
-		<class>com.skilldistillery.frameworkautomation.entities.Comment</class>
-		<class>com.skilldistillery.frameworkautomation.entities.Rating</class>
-
+		<class>com.mattaldrete.entities.Trail</class>
+		<class>com.mattaldrete.entities.Playlist</class>
+		<class>com.mattaldrete.entities.Comment</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
