@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `stats` VARCHAR(500) NULL,
   `Location_id` INT NULL,
   `role` VARCHAR(100) NULL,
+  `enabled` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_User_Location_idx` (`Location_id` ASC),
   CONSTRAINT `fk_User_Location`
@@ -173,9 +174,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `xtrailsdb`;
-INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`) VALUES (1, 'matt', 'matt@matt.com', 1, NULL, NULL, 'cycling', NULL, 1, NULL);
-INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`) VALUES (2, 'vanessa', 'vanessa@aol.com', 1, NULL, NULL, 'running', NULL, 2, NULL);
-INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`) VALUES (3, 'james', 'james@aol.com', 1, NULL, NULL, 'mountain biking', NULL, 3, NULL);
+INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`, `enabled`) VALUES (1, 'matt', 'matt@matt.com', 1, NULL, NULL, 'cycling', NULL, 1, NULL, 1);
+INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`, `enabled`) VALUES (2, 'vanessa', 'vanessa@aol.com', 1, NULL, NULL, 'running', NULL, 2, NULL, 1);
+INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`, `enabled`) VALUES (3, 'james', 'james@aol.com', 1, NULL, NULL, 'mountain biking', NULL, 3, NULL, 1);
 
 COMMIT;
 

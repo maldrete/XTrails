@@ -24,6 +24,8 @@ public class User {
 	private Boolean active;
 	private String favoriteActivities;
 	private String stats;
+	private String role;
+	private Boolean enabled;
 
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comment;
@@ -107,15 +109,31 @@ public class User {
 		this.location = location;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", email=" + email + ", active=" + active
-				+ ", favoriteActivities=" + favoriteActivities + ", stats=" + stats + ", comment=" + comment
-				+ ", playist=" + playist + ", location=" + location + "]";
+				+ ", favoriteActivities=" + favoriteActivities + ", stats=" + stats + ", role=" + role + ", enabled="
+				+ enabled + ", comment=" + comment + ", playist=" + playist + ", location=" + location + "]";
 	}
 
 	public User(Integer id, String userName, String email, Boolean active, String favoriteActivities, String stats,
-			List<Comment> comment, List<Playlist> playist, Location location) {
+			String role, Boolean enabled, List<Comment> comment, List<Playlist> playist, Location location) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -123,6 +141,8 @@ public class User {
 		this.active = active;
 		this.favoriteActivities = favoriteActivities;
 		this.stats = stats;
+		this.role = role;
+		this.enabled = enabled;
 		this.comment = comment;
 		this.playist = playist;
 		this.location = location;
