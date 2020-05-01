@@ -1,14 +1,20 @@
 package com.mattaldrete.xtrails.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import com.mattaldrete.enitities.User;
+import com.mattaldrete.entities.User;
 import com.mattaldrete.xtrails.repositories.UserRepository;
 
+@Service
 public class UserServiceIMPL implements UserService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 
 	@Override
 	public User findById(Integer id) {
@@ -18,8 +24,8 @@ public class UserServiceIMPL implements UserService {
 
 	@Override
 	public User findByUserName(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userRepo.findByUserNameAndEnabledTrue(username);
+		return user;
 	}
 
 	@Override

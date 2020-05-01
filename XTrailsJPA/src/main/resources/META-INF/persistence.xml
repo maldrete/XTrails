@@ -6,7 +6,6 @@
 
 	<persistence-unit name="XTrailsPU">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
 		<class>com.mattaldrete.entities.User</class>
 		<class>com.mattaldrete.entities.Trail</class>
 		<class>com.mattaldrete.entities.Playlist</class>

@@ -1,4 +1,4 @@
-package com.mattaldrete.enitities;
+package com.mattaldrete.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,6 +15,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import com.mattaldrete.entities.Comment;
+import com.mattaldrete.entities.Location;
+import com.mattaldrete.entities.Playlist;
+import com.mattaldrete.entities.User;
 
 class UserTest {
 
@@ -44,18 +49,23 @@ class UserTest {
 
 	}
 
-	@Disabled
+//	@Disabled
 	@DisplayName("test entity fields owned by table")
 	@Test
 	void test() {
+		assertEquals(1, user.getId());
 		assertEquals("matt", user.getUserName());
 		assertEquals(true, user.getActive());
 		assertEquals("matt@matt.com", user.getEmail());
 		assertEquals("cycling", user.getFavoriteActivities());
 		assertEquals(null, user.getStats());
+		assertEquals(true, user.getEnabled());
+		assertEquals("123", user.getPassword());
+		assertEquals(null, user.getRole());
+
 	}
 
-	@Disabled
+//	@Disabled
 	@DisplayName("test playlist one to many relationship")
 	@Test
 	void test2() {
@@ -68,7 +78,7 @@ class UserTest {
 
 	}
 
-	@Disabled
+//	@Disabled
 	@DisplayName("test comment one to many relationship")
 	@Test
 	void test3() {
@@ -79,6 +89,7 @@ class UserTest {
 		assertEquals(ldDate, comment1.getDatePosted());
 	}
 
+	
 	@DisplayName("test location one to one relationship")
 	@Test
 	void test4() {

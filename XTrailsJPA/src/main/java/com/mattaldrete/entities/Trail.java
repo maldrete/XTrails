@@ -1,4 +1,4 @@
-package com.mattaldrete.enitities;
+package com.mattaldrete.entities;
 
 import java.util.List;
 

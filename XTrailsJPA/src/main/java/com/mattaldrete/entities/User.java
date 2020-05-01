@@ -1,4 +1,4 @@
-package com.mattaldrete.enitities;
+package com.mattaldrete.entities;
 
 import java.util.List;
 
@@ -26,6 +26,7 @@ public class User {
 	private String stats;
 	private String role;
 	private Boolean enabled;
+	private String password;
 
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comment;
@@ -125,15 +126,25 @@ public class User {
 		this.enabled = enabled;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", email=" + email + ", active=" + active
 				+ ", favoriteActivities=" + favoriteActivities + ", stats=" + stats + ", role=" + role + ", enabled="
-				+ enabled + ", comment=" + comment + ", playist=" + playist + ", location=" + location + "]";
+				+ enabled + ", password=" + password + ", comment=" + comment + ", playist=" + playist + ", location="
+				+ location + "]";
 	}
 
 	public User(Integer id, String userName, String email, Boolean active, String favoriteActivities, String stats,
-			String role, Boolean enabled, List<Comment> comment, List<Playlist> playist, Location location) {
+			String role, Boolean enabled, String password, List<Comment> comment, List<Playlist> playist,
+			Location location) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -143,6 +154,7 @@ public class User {
 		this.stats = stats;
 		this.role = role;
 		this.enabled = enabled;
+		this.password = password;
 		this.comment = comment;
 		this.playist = playist;
 		this.location = location;

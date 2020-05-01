@@ -1,4 +1,4 @@
-package com.mattaldrete.enitities;
+package com.mattaldrete.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 

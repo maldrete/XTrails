@@ -1,6 +1,6 @@
 package com.mattaldrete.xtrails.services;
 
-import com.mattaldrete.enitities.User;
+import com.mattaldrete.entities.User;
 
 public interface UserService {
 

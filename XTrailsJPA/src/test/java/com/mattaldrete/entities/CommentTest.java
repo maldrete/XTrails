@@ -1,6 +1,8 @@
-package com.mattaldrete.enitities;
+package com.mattaldrete.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,13 +12,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class TrailTest {
+class CommentTest {
 	private static EntityManagerFactory emf;
-	private static EntityManager em;
-	private Trail trail;
+	private EntityManager em;
+	private Comment comment;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,19 +32,22 @@ class TrailTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		trail = em.find(Trail.class, 1);
+		comment = em.find(Comment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-	}
 
-	@DisplayName("test trail fields")
+	}
+	
 	@Test
 	void test() {
-		assertEquals("high line canal", trail.getName());
-		assertEquals("Englewood", trail.getLocation().getCity());
+		LocalDate ldDate = LocalDate.of(2020, 04, 27);
+		assertEquals(1, comment.getId());
+		assertEquals(1, comment.getTrail().getId());
+		assertEquals(1, comment.getUser().getId());
+		assertEquals(ldDate, comment.getDatePosted());
 	}
 
 }
