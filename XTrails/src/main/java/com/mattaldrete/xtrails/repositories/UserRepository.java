@@ -10,5 +10,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public User findByIdAndEnabledTrue(Integer id);
 	
 	public User findByUsernameAndEnabledTrue(String username);
+	
+	public User findByUsername(String username);
 
 }

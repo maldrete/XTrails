@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -32,14 +34,16 @@ public class User {
 	private Boolean enabled;
 	private String password;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comment;
 
+	
 	@OneToMany(mappedBy = "user")
 	private List<Playlist> playist;
 
 	@OneToOne
-	@JoinColumn(name = "Location_id")
+	@JoinColumn(name = "location_id")
 	private Location location;
 
 	public Integer getId() {

@@ -1,6 +1,7 @@
 package com.mattaldrete.xtrails.controllers;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mattaldrete.entities.User;
-import com.mattaldrete.entities.UserToRegister;
+import com.mattaldrete.xtrails.repositories.UserRepository;
 import com.mattaldrete.xtrails.services.AuthService;
+import com.mattaldrete.xtrails.services.UserService;
 
 @RestController
 @CrossOrigin({ "*", "http://localhost:4289" })
@@ -22,28 +24,23 @@ public class AuthController {
 	@Autowired
 	AuthService authSvc;
 
-//	@PostMapping("register")
-//	public User register(@RequestBody UserToRegister userToRegister, HttpServletResponse res) {
-//
-//		if (userToRegister == null) {
-//			res.setStatus(400);
-//		}
-//
-//		User newUser = new User(userToRegister);
-//		
-//		newUser.setId(0);
-//		newUser = authSvc.register(newUser);
-//
-//		return newUser;
-//	}
-	
+	@Autowired
+	UserRepository userRepo;
+
 	@PostMapping("register")
 	public User register(@RequestBody User user, HttpServletResponse res) {
-
-		if (user == null) {
-			res.setStatus(400);
+		try {
+			User optionalUser = userRepo.findByUsername(user.getUsername());
+			if(optionalUser.getUsername().equals(user.getUsername())) {
+				throw new RuntimeException("Username alreadys exists");
+			}
+		} 
+		
+		catch (NullPointerException e) {
+			// TODO: handle exception
 		}
-
+		
+		
 		User newUser = new User(user);
 		
 		

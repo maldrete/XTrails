@@ -2,6 +2,7 @@ package com.mattaldrete.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,17 +19,18 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name = "actual_comment")
 	private String actualComment;
 
 	@ManyToOne
-	@JoinColumn(name = "User_id")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "Trail_id")
+	@JoinColumn(name = "trail_id")
 	private Trail trail;
 
-	
+	@Column(name = "date_posted")
 	private LocalDate datePosted;
 
 	public Integer getId() {
@@ -62,8 +64,6 @@ public class Comment {
 	public void setTrail(Trail trail) {
 		this.trail = trail;
 	}
-
-	
 
 	public LocalDate getDatePosted() {
 		return datePosted;

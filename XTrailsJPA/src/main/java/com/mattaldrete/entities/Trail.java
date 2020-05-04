@@ -2,6 +2,7 @@ package com.mattaldrete.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "trail")
 public class Trail {
+	
+//	comment_id field not used | List of comments mapped by trail
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,15 +24,22 @@ public class Trail {
 
 	private String name;
 
+	@Column(name = "dog_friendly")
 	private Boolean dogFriendly;
 	private String hashtags;
 	private String description;
 	private String photos;
 	private String rating;
 	private String review;
+
+	@Column(name = "route_type")
 	private String routeType;
 	private String distance;
+
+	@Column(name = "elevation_gain")
 	private Integer elevationGain;
+
+	@Column(name = "article_links")
 	private String articleLinks;
 	private String directions;
 	private String share;
@@ -41,7 +51,7 @@ public class Trail {
 	private List<Comment> comment;
 
 	@OneToOne
-	@JoinColumn(name = "Location_id")
+	@JoinColumn(name = "location_id")
 	private Location location;
 
 	public int getId() {
