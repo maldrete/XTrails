@@ -4,10 +4,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.mattaldrete.entities.User;
 import com.mattaldrete.xtrails.repositories.UserRepository;
 
+@Service
 public class AuthServiceIMPL implements AuthService {
 
 	@Autowired
@@ -19,12 +21,16 @@ public class AuthServiceIMPL implements AuthService {
 	@Override
 	public User register(User user) {
 		Optional<User> optionalUser = userRepo.findById(user.getId());
-		String encodedPW = encoder.encode(user.getPassword());
 		if (optionalUser.isPresent()) {
 			throw new RuntimeException("Username alreadys exists");
 		}
+		String encodedPW = encoder.encode(user.getPassword());
 		user.setPassword(encodedPW);
+		
 		user.setEnabled(true);
+		user.setRole("standard");
+		System.err.println("In rencodedpw" + encodedPW);
+		
 		userRepo.saveAndFlush(user);
 		return user;
 	}

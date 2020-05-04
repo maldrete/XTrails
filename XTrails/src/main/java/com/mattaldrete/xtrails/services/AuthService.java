@@ -9,4 +9,5 @@ public interface AuthService {
 	public User getUserById(Integer id);
 	
 	public User getUserByUsername(String username);
+	
 }

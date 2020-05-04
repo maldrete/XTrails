@@ -163,4 +163,25 @@ public class User {
 	public User() {
 
 	}
+	
+	public User(User user) {
+		this.id = user.getId();
+		this.userName = user.getUserName();
+		this.email = user.getEmail();
+		this.active = user.getActive();
+		this.favoriteActivities = user.getFavoriteActivities();
+		this.stats = user.getStats();
+		this.role = user.getRole();
+		this.enabled = user.getEnabled();
+		this.password = user.getPassword();
+		this.comment = user.getComment();
+		this.playist = user.getPlayist();
+		this.location = user.getLocation();
+	}
+	
+	public User(UserToRegister userToRegister) {
+		this.userName = userToRegister.getUsername();
+		this.password = userToRegister.getPassword();
+		this.email = userToRegister.getEmail();
+	}
 }

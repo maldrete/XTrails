@@ -24,6 +24,7 @@ public class UserServiceIMPL implements UserService {
 
 	@Override
 	public User findByUserName(String username) {
+		System.err.println("in find by username");
 		User user = userRepo.findByUserNameAndEnabledTrue(username);
 		return user;
 	}
@@ -32,6 +33,15 @@ public class UserServiceIMPL implements UserService {
 	public User updateUser(User updatedUser) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean activateUser(Integer id) {
+		User user = userRepo.findByIdAndEnabledTrue(id);
+		user.setEnabled(true);
+		userRepo.saveAndFlush(user);
+		
+		return true;
 	}
 
 }
