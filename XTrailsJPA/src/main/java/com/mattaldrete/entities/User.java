@@ -2,6 +2,7 @@ package com.mattaldrete.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,13 +17,16 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String userName;
+	private String username;
 	private String email;
 	private Boolean active;
+
+	@Column(name = "favorite_activities")
 	private String favoriteActivities;
+
 	private String stats;
 	private String role;
 	private Boolean enabled;
@@ -46,12 +50,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {
@@ -134,20 +138,12 @@ public class User {
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", email=" + email + ", active=" + active
-				+ ", favoriteActivities=" + favoriteActivities + ", stats=" + stats + ", role=" + role + ", enabled="
-				+ enabled + ", password=" + password + ", comment=" + comment + ", playist=" + playist + ", location="
-				+ location + "]";
-	}
-
-	public User(Integer id, String userName, String email, Boolean active, String favoriteActivities, String stats,
+	public User(Integer id, String username, String email, Boolean active, String favoriteActivities, String stats,
 			String role, Boolean enabled, String password, List<Comment> comment, List<Playlist> playist,
 			Location location) {
 		super();
 		this.id = id;
-		this.userName = userName;
+		this.username = username;
 		this.email = email;
 		this.active = active;
 		this.favoriteActivities = favoriteActivities;
@@ -160,13 +156,21 @@ public class User {
 		this.location = location;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", active=" + active
+				+ ", favoriteActivities=" + favoriteActivities + ", stats=" + stats + ", role=" + role + ", enabled="
+				+ enabled + ", password=" + password + ", comment=" + comment + ", playist=" + playist + ", location="
+				+ location + "]";
+	}
+
 	public User() {
 
 	}
-	
+
 	public User(User user) {
 		this.id = user.getId();
-		this.userName = user.getUserName();
+		this.username = user.getUsername();
 		this.email = user.getEmail();
 		this.active = user.getActive();
 		this.favoriteActivities = user.getFavoriteActivities();
@@ -178,10 +182,5 @@ public class User {
 		this.playist = user.getPlayist();
 		this.location = user.getLocation();
 	}
-	
-	public User(UserToRegister userToRegister) {
-		this.userName = userToRegister.getUsername();
-		this.password = userToRegister.getPassword();
-		this.email = userToRegister.getEmail();
-	}
+
 }

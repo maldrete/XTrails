@@ -41,17 +41,17 @@ DROP TABLE IF EXISTS `User` ;
 
 CREATE TABLE IF NOT EXISTS `User` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `userName` VARCHAR(200) NOT NULL,
+  `username` VARCHAR(200) NOT NULL,
   `email` VARCHAR(200) NULL,
   `active` TINYINT NULL,
   `playlist` VARCHAR(45) NULL,
   `comments` VARCHAR(500) NULL,
-  `favoriteActivities` VARCHAR(500) NULL,
+  `favorite_activities` VARCHAR(500) NULL,
   `stats` VARCHAR(500) NULL,
   `Location_id` INT NULL,
   `role` VARCHAR(100) NULL,
   `enabled` TINYINT NOT NULL,
-  `password` VARCHAR(500) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_User_Location_idx` (`Location_id` ASC),
   CONSTRAINT `fk_User_Location`
@@ -175,9 +175,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `xtrailsdb`;
-INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`, `enabled`, `password`) VALUES (1, 'matt', 'matt@matt.com', 1, NULL, NULL, 'cycling', NULL, 1, NULL, 1, '123');
-INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`, `enabled`, `password`) VALUES (2, 'vanessa', 'vanessa@aol.com', 1, NULL, NULL, 'running', NULL, 2, NULL, 1, 'pass');
-INSERT INTO `User` (`id`, `userName`, `email`, `active`, `playlist`, `comments`, `favoriteActivities`, `stats`, `Location_id`, `role`, `enabled`, `password`) VALUES (3, 'james', 'james@aol.com', 1, NULL, NULL, 'mountain biking', NULL, 3, NULL, 1, 'pass2');
+INSERT INTO `User` (`id`, `username`, `email`, `active`, `playlist`, `comments`, `favorite_activities`, `stats`, `Location_id`, `role`, `enabled`, `password`) VALUES (1, 'matt', 'matt@matt.com', 1, NULL, NULL, 'cycling', NULL, 1, NULL, 1, '123');
+INSERT INTO `User` (`id`, `username`, `email`, `active`, `playlist`, `comments`, `favorite_activities`, `stats`, `Location_id`, `role`, `enabled`, `password`) VALUES (2, 'vanessa', 'vanessa@aol.com', 1, NULL, NULL, 'running', NULL, 2, NULL, 1, 'pass');
+INSERT INTO `User` (`id`, `username`, `email`, `active`, `playlist`, `comments`, `favorite_activities`, `stats`, `Location_id`, `role`, `enabled`, `password`) VALUES (3, 'james', 'james@aol.com', 1, NULL, NULL, 'mountain biking', NULL, 3, NULL, 1, 'pass2');
 
 COMMIT;
 

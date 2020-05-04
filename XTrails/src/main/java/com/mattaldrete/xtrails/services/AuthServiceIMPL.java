@@ -20,15 +20,16 @@ public class AuthServiceIMPL implements AuthService {
 
 	@Override
 	public User register(User user) {
-		Optional<User> optionalUser = userRepo.findById(user.getId());
-		if (optionalUser.isPresent()) {
-			throw new RuntimeException("Username alreadys exists");
-		}
+//		Optional<User> optionalUser = userRepo.findById(user.getId());
+//		if (optionalUser.isPresent()) {
+//			throw new RuntimeException("Username alreadys exists");
+//		}
 		String encodedPW = encoder.encode(user.getPassword());
 		user.setPassword(encodedPW);
 		
 		user.setEnabled(true);
 		user.setRole("standard");
+		user.setFavoriteActivities("");
 		System.err.println("In rencodedpw" + encodedPW);
 		
 		userRepo.saveAndFlush(user);
@@ -44,7 +45,7 @@ public class AuthServiceIMPL implements AuthService {
 
 	@Override
 	public User getUserByUsername(String username) {
-		User user = userRepo.findByUserNameAndEnabledTrue(username);
+		User user = userRepo.findByUsernameAndEnabledTrue(username);
 		return user;
 	}
 

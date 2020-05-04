@@ -8,7 +8,7 @@ public interface UserService {
 	
 	public boolean activateUser(Integer id);
 
-	public User findByUserName(String username);
+	public User findByUsername(String username);
 
 	public User updateUser(User updatedUser);
 

@@ -22,14 +22,31 @@ public class AuthController {
 	@Autowired
 	AuthService authSvc;
 
-	@PostMapping("/register")
-	public User register(@RequestBody UserToRegister userToRegister, HttpServletResponse res) {
+//	@PostMapping("register")
+//	public User register(@RequestBody UserToRegister userToRegister, HttpServletResponse res) {
+//
+//		if (userToRegister == null) {
+//			res.setStatus(400);
+//		}
+//
+//		User newUser = new User(userToRegister);
+//		
+//		newUser.setId(0);
+//		newUser = authSvc.register(newUser);
+//
+//		return newUser;
+//	}
+	
+	@PostMapping("register")
+	public User register(@RequestBody User user, HttpServletResponse res) {
 
-		if (userToRegister == null) {
+		if (user == null) {
 			res.setStatus(400);
 		}
 
-		User newUser = new User(userToRegister);
+		User newUser = new User(user);
+		
+		
 		newUser = authSvc.register(newUser);
 
 		return newUser;

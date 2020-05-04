@@ -54,7 +54,7 @@ class UserTest {
 	@Test
 	void test() {
 		assertEquals(1, user.getId());
-		assertEquals("matt", user.getUserName());
+		assertEquals("matt", user.getUsername());
 		assertEquals(true, user.getActive());
 		assertEquals("matt@matt.com", user.getEmail());
 		assertEquals("cycling", user.getFavoriteActivities());
@@ -74,7 +74,7 @@ class UserTest {
 		assertEquals("5 milers", playlist1.getName());
 		assertEquals("5 mile trails i enjoy", playlist1.getDescription());
 		assertEquals(null, playlist1.getHashtags());
-		assertEquals("matt", playlist1.getUser().getUserName());
+		assertEquals("matt", playlist1.getUser().getUsername());
 
 	}
 

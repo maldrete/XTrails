@@ -9,6 +9,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public User findByIdAndEnabledTrue(Integer id);
 	
-	public User findByUserNameAndEnabledTrue(String username);
+	public User findByUsernameAndEnabledTrue(String username);
 
 }

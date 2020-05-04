@@ -22,7 +22,7 @@ public class UserController {
 	@GetMapping("me")
 	public User getUser(Principal principle) {
 		System.err.println("in get user method");
-		User user = userSvc.findByUserName(principle.getName());
+		User user = userSvc.findByUsername(principle.getName());
 		
 		System.err.println(user.toString());
 		return user;

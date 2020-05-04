@@ -23,9 +23,9 @@ public class UserServiceIMPL implements UserService {
 	}
 
 	@Override
-	public User findByUserName(String username) {
+	public User findByUsername(String username) {
 		System.err.println("in find by username");
-		User user = userRepo.findByUserNameAndEnabledTrue(username);
+		User user = userRepo.findByUsernameAndEnabledTrue(username);
 		return user;
 	}
 
