@@ -9,10 +9,10 @@ import com.mattaldrete.xtrails.repositories.UserRepository;
 
 @Service
 public class UserServiceIMPL implements UserService {
-	
+
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private PasswordEncoder encoder;
 
@@ -31,8 +31,21 @@ public class UserServiceIMPL implements UserService {
 
 	@Override
 	public User updateUser(User updatedUser) {
-		// TODO Auto-generated method stub
-		return null;
+		User oldUser = userRepo.findByUsername(updatedUser.getUsername());
+		System.out.println(updatedUser);
+
+		if (updatedUser.getEmail() != null) {
+			oldUser.setEmail(updatedUser.getEmail());
+		}
+
+		if (updatedUser.getPassword() != null) {
+			System.out.println("hello im in password");
+			String encodedPW = encoder.encode(updatedUser.getPassword());
+			oldUser.setPassword(encodedPW); // only persist encoded password
+
+		}
+		userRepo.saveAndFlush(oldUser);
+		return oldUser;
 	}
 
 	@Override
@@ -40,8 +53,14 @@ public class UserServiceIMPL implements UserService {
 		User user = userRepo.findByIdAndEnabledTrue(id);
 		user.setEnabled(true);
 		userRepo.saveAndFlush(user);
-		
+
 		return true;
+	}
+
+	@Override
+	public String deleteUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

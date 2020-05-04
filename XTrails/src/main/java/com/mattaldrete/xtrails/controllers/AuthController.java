@@ -31,21 +31,15 @@ public class AuthController {
 	public User register(@RequestBody User user, HttpServletResponse res) {
 		try {
 			User optionalUser = userRepo.findByUsername(user.getUsername());
-			if(optionalUser.getUsername().equals(user.getUsername())) {
+			if (optionalUser.getUsername().equals(user.getUsername())) {
 				throw new RuntimeException("Username alreadys exists");
 			}
-		} 
-		
-		catch (NullPointerException e) {
-			// TODO: handle exception
 		}
-		
-		
+		catch (NullPointerException e) {
+			// user not found
+		}
 		User newUser = new User(user);
-		
-		
 		newUser = authSvc.register(newUser);
-
 		return newUser;
 	}
 
