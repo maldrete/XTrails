@@ -47,22 +47,24 @@ public class UserController {
 	}
 
 	@DeleteMapping("users/{username}")
-	public Boolean deactivateUser(@PathVariable String username, Principal principal) {
+	public User deactivateUser(@PathVariable String username, Principal principal) {
 		Boolean deactivated = false;
+		User user = userSvc.findByUsername(username);
 		if (userSvc.findByUsername(principal.getName()).getRole().equals("admin")) {
 			deactivated = userSvc.deactivateUser(username);
+
 		}
-		return deactivated;
+		return user;
 	}
-	
+
 	@PutMapping("users/{username}")
-	public Boolean activateUser(@PathVariable String username, Principal princpal) {
+	public User activateUser(@PathVariable String username, Principal princpal) {
 		Boolean activated = false;
+		User user = userSvc.findByUsername(username);
 		if (userSvc.findByUsername(princpal.getName()).getRole().equals("admin")) {
 			activated = userSvc.activateUser(username);
 		}
-		return activated;
+		return user;
 	}
-	
-	
+
 }
