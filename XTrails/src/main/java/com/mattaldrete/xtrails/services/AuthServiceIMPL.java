@@ -26,12 +26,12 @@ public class AuthServiceIMPL implements AuthService {
 //		}
 		String encodedPW = encoder.encode(user.getPassword());
 		user.setPassword(encodedPW);
-		
+
 		user.setEnabled(true);
 		user.setRole("standard");
 		user.setFavoriteActivities("");
 		System.err.println("In rencodedpw" + encodedPW);
-		
+
 		userRepo.saveAndFlush(user);
 		return user;
 	}
@@ -46,6 +46,18 @@ public class AuthServiceIMPL implements AuthService {
 	@Override
 	public User getUserByUsername(String username) {
 		User user = userRepo.findByUsernameAndEnabledTrue(username);
+		return user;
+	}
+
+	@Override
+	public User RegisterAdmin(User user) {
+		String encodedPW = encoder.encode(user.getPassword());
+		user.setPassword(encodedPW);
+
+		user.setRole("admin");
+		user.setEnabled(true);
+		userRepo.saveAndFlush(user);
+
 		return user;
 	}
 

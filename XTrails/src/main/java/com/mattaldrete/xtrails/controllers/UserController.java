@@ -1,10 +1,13 @@
 package com.mattaldrete.xtrails.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,4 +40,29 @@ public class UserController {
 		user = userSvc.updateUser(user);
 		return user;
 	}
+
+	@GetMapping("users")
+	public List<User> getAllUsers() {
+		return userSvc.getAllUsers();
+	}
+
+	@DeleteMapping("users/{username}")
+	public Boolean deactivateUser(@PathVariable String username, Principal principal) {
+		Boolean deactivated = false;
+		if (userSvc.findByUsername(principal.getName()).getRole().equals("admin")) {
+			deactivated = userSvc.deactivateUser(username);
+		}
+		return deactivated;
+	}
+	
+	@PutMapping("users/{username}")
+	public Boolean activateUser(@PathVariable String username, Principal princpal) {
+		Boolean activated = false;
+		if (userSvc.findByUsername(princpal.getName()).getRole().equals("admin")) {
+			activated = userSvc.activateUser(username);
+		}
+		return activated;
+	}
+	
+	
 }

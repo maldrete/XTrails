@@ -5,6 +5,8 @@ import com.mattaldrete.entities.User;
 public interface AuthService {
 
 	public User register(User user);
+
+	public User RegisterAdmin(User user);
 	
 	public User getUserById(Integer id);
 	

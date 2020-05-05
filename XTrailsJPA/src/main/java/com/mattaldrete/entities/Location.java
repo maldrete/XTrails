@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "location")
 public class Location {
@@ -27,6 +29,7 @@ public class Location {
 	@OneToOne(mappedBy = "location")
 	private Trail trail;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy = "location")
 	private User user;
 

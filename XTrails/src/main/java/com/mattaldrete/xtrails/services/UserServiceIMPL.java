@@ -1,5 +1,7 @@
 package com.mattaldrete.xtrails.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -49,8 +51,8 @@ public class UserServiceIMPL implements UserService {
 	}
 
 	@Override
-	public boolean activateUser(Integer id) {
-		User user = userRepo.findByIdAndEnabledTrue(id);
+	public Boolean activateUser(String username) {
+		User user = userRepo.findByUsername(username);
 		user.setEnabled(true);
 		userRepo.saveAndFlush(user);
 
@@ -58,9 +60,16 @@ public class UserServiceIMPL implements UserService {
 	}
 
 	@Override
-	public String deleteUser(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean deactivateUser(String username) {
+		User user = userRepo.findByUsernameAndEnabledTrue(username);
+		user.setEnabled(false);
+		return true;
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		return userRepo.findAll();
+
 	}
 
 }

@@ -34,8 +34,7 @@ public class AuthController {
 			if (optionalUser.getUsername().equals(user.getUsername())) {
 				throw new RuntimeException("Username alreadys exists");
 			}
-		}
-		catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 			// user not found
 		}
 		User newUser = new User(user);
@@ -43,7 +42,23 @@ public class AuthController {
 		return newUser;
 	}
 
-	@GetMapping("/authenticate")
+	@PostMapping("registerAdmin")
+	public User registerAdmin(@RequestBody User user, HttpServletResponse res) {
+		try {
+			User optionalUser = userRepo.findByUsername(user.getUsername());
+			if (optionalUser.getUsername().equals(user.getUsername())) {
+				throw new RuntimeException("Username alreadys exists");
+			}
+		} catch (NullPointerException e) {
+			// username in database does not exist check
+		}
+		User newUser = new User(user);
+		newUser = authSvc.RegisterAdmin(newUser);
+		return newUser;
+
+	}
+
+	@GetMapping("authenticate")
 	public Boolean authenticate(Principal principal) {
 		User user = authSvc.getUserByUsername(principal.getName());
 		if (user == null) {
