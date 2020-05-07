@@ -10,16 +10,16 @@ import com.mattaldrete.xtrails.repositories.TrailRepository;
 
 @Service
 public class TrailServiceImpl implements TrailService {
-	
+
 	@Autowired
 	TrailRepository trailRepo;
 
 	@Override
 	public Trail createTrail(Trail trail) {
-		
+
 //		Add some checks if fields are not input
 //		Controller will check in trail name was already taken
-		
+
 		trailRepo.saveAndFlush(trail);
 		return trail;
 	}
@@ -47,16 +47,18 @@ public class TrailServiceImpl implements TrailService {
 		if (updatedTrail.getDifficulty() != null) {
 			managedTrail.setDifficulty(updatedTrail.getDifficulty());
 		}
-		
-		return null;
+
+		trailRepo.saveAndFlush(updatedTrail);
+
+		return updatedTrail;
 	}
 
 	@Override
 	public Boolean deleteTrail(String name) {
 		Trail trail = trailRepo.findByName(name);
 		trailRepo.delete(trail);
-		
-		if(trailRepo.existsById(trail.getId())) {
+
+		if (trailRepo.existsById(trail.getId())) {
 			return false;
 		}
 		return true;
