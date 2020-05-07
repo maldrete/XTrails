@@ -10,7 +10,7 @@ public interface TrailService {
 	
 	public Trail updateTrail(Trail updatedTrail);
 	
-	public Trail deleteTrail(String name);
+	public Boolean deleteTrail(String name);
 	
 	public List<Trail> getAllTrails();
 

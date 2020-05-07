@@ -3,10 +3,12 @@ package com.mattaldrete.xtrails.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mattaldrete.entities.Trail;
 import com.mattaldrete.xtrails.repositories.TrailRepository;
 
+@Service
 public class TrailServiceImpl implements TrailService {
 	
 	@Autowired
@@ -24,21 +26,45 @@ public class TrailServiceImpl implements TrailService {
 
 	@Override
 	public Trail updateTrail(Trail updatedTrail) {
+//		can update dog friendly, description, route type, distance, eleavtion gain, difficulty
+//		future update location
 		Trail managedTrail = trailRepo.findByName(updatedTrail.getName());
-		if ()
+		if (updatedTrail.getDogFriendly() != null) {
+			managedTrail.setDogFriendly(updatedTrail.getDogFriendly());
+		}
+		if (updatedTrail.getDescription() != null) {
+			managedTrail.setDescription(updatedTrail.getDescription());
+		}
+		if (updatedTrail.getRouteType() != null) {
+			managedTrail.setRouteType(updatedTrail.getRouteType());
+		}
+		if (updatedTrail.getDistance() != null) {
+			managedTrail.setDistance(updatedTrail.getDistance());
+		}
+		if (updatedTrail.getElevationGain() != null) {
+			managedTrail.setElevationGain(updatedTrail.getElevationGain());
+		}
+		if (updatedTrail.getDifficulty() != null) {
+			managedTrail.setDifficulty(updatedTrail.getDifficulty());
+		}
+		
 		return null;
 	}
 
 	@Override
-	public Trail deleteTrail(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean deleteTrail(String name) {
+		Trail trail = trailRepo.findByName(name);
+		trailRepo.delete(trail);
+		
+		if(trailRepo.existsById(trail.getId())) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public List<Trail> getAllTrails() {
-		// TODO Auto-generated method stub
-		return null;
+		return trailRepo.findAll();
 	}
 
 }
