@@ -109,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `Playlist` (
   `description` VARCHAR(500) NULL,
   `hashtags` VARCHAR(500) NULL,
   `user_id` INT NOT NULL,
+  `trail` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Playlist_User1_idx` (`user_id` ASC),
   CONSTRAINT `fk_Playlist_User1`
@@ -139,6 +140,29 @@ CREATE TABLE IF NOT EXISTS `Comment` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Comment_Trail1`
+    FOREIGN KEY (`trail_id`)
+    REFERENCES `Trail` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Playlist_has_Trail`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Playlist_has_Trail` ;
+
+CREATE TABLE IF NOT EXISTS `Playlist_has_Trail` (
+  `playlist_id` INT NOT NULL,
+  `trail_id` INT NOT NULL,
+  INDEX `fk_Playlist_has_Trail_Trail1_idx` (`trail_id` ASC),
+  INDEX `fk_Playlist_has_Trail_Playlist1_idx` (`playlist_id` ASC),
+  CONSTRAINT `fk_Playlist_has_Trail_Playlist1`
+    FOREIGN KEY (`playlist_id`)
+    REFERENCES `Playlist` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Playlist_has_Trail_Trail1`
     FOREIGN KEY (`trail_id`)
     REFERENCES `Trail` (`id`)
     ON DELETE NO ACTION
@@ -198,8 +222,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `xtrailsdb`;
-INSERT INTO `Playlist` (`id`, `name`, `description`, `hashtags`, `user_id`) VALUES (1, '5 milers', '5 mile trails i enjoy', NULL, 1);
-INSERT INTO `Playlist` (`id`, `name`, `description`, `hashtags`, `user_id`) VALUES (2, 'bike routes', 'sweet mtn bike routes', NULL, 3);
+INSERT INTO `Playlist` (`id`, `name`, `description`, `hashtags`, `user_id`, `trail`) VALUES (1, '5 milers', '5 mile trails i enjoy', NULL, 1, NULL);
+INSERT INTO `Playlist` (`id`, `name`, `description`, `hashtags`, `user_id`, `trail`) VALUES (2, 'bike routes', 'sweet mtn bike routes', NULL, 3, NULL);
 
 COMMIT;
 

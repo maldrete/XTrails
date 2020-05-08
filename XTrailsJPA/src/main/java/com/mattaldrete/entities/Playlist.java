@@ -1,10 +1,14 @@
 package com.mattaldrete.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,6 +25,10 @@ public class Playlist {
 	private String name;
 	private String description;
 	private String hashtags;
+
+	@ManyToMany
+	@JoinTable(name = "playlist_has_trail", joinColumns = @JoinColumn(name = "playlist_id"), inverseJoinColumns = @JoinColumn(name = "trail_id"))
+	private List<Trail> trails;
 
 	@JsonIgnore
 	@ManyToOne
@@ -67,18 +75,27 @@ public class Playlist {
 		this.user = user;
 	}
 
+	public List<Trail> getTrails() {
+		return trails;
+	}
+
+	public void setTrails(List<Trail> trails) {
+		this.trails = trails;
+	}
+
 	@Override
 	public String toString() {
 		return "Playlist [id=" + id + ", name=" + name + ", description=" + description + ", hashtags=" + hashtags
-				+ ", user=" + user + "]";
+				+ ", trails=" + trails + ", user=" + user + "]";
 	}
 
-	public Playlist(Integer id, String name, String description, String hashtags, User user) {
+	public Playlist(Integer id, String name, String description, String hashtags, List<Trail> trails, User user) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.hashtags = hashtags;
+		this.trails = trails;
 		this.user = user;
 	}
 

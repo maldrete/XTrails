@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "trail")
 public class Trail {
-	
+
 //	comment_id field not used | List of comments mapped by trail
 
 	@Id
@@ -55,6 +56,9 @@ public class Trail {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "location_id")
 	private Location location;
+
+	@ManyToMany(mappedBy = "trails")
+	private List<Playlist> playlists;
 
 	public int getId() {
 		return id;
@@ -208,6 +212,14 @@ public class Trail {
 		this.exercise = exercise;
 	}
 
+	public List<Playlist> getPlaylists() {
+		return playlists;
+	}
+
+	public void setPlaylists(List<Playlist> playlists) {
+		this.playlists = playlists;
+	}
+
 	@Override
 	public String toString() {
 		return "Trail [id=" + id + ", name=" + name + ", dogFriendly=" + dogFriendly + ", hashtags=" + hashtags
@@ -215,13 +227,13 @@ public class Trail {
 				+ ", routeType=" + routeType + ", distance=" + distance + ", elevationGain=" + elevationGain
 				+ ", articleLinks=" + articleLinks + ", directions=" + directions + ", share=" + share + ", difficulty="
 				+ difficulty + ", weather=" + weather + ", exercise=" + exercise + ", comment=" + comment
-				+ ", location=" + location + "]";
+				+ ", location=" + location + ", playlists=" + playlists + "]";
 	}
 
 	public Trail(int id, String name, Boolean dogFriendly, String hashtags, String description, String photos,
 			String rating, String review, String routeType, String distance, Integer elevationGain, String articleLinks,
 			String directions, String share, String difficulty, String weather, String exercise, List<Comment> comment,
-			Location location) {
+			Location location, List<Playlist> playlists) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -242,6 +254,7 @@ public class Trail {
 		this.exercise = exercise;
 		this.comment = comment;
 		this.location = location;
+		this.playlists = playlists;
 	}
 
 	public Trail() {
