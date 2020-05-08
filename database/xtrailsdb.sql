@@ -238,3 +238,14 @@ INSERT INTO `Comment` (`id`, `actual_comment`, `user_id`, `trail_id`, `date_post
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `Playlist_has_Trail`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `xtrailsdb`;
+INSERT INTO `Playlist_has_Trail` (`playlist_id`, `trail_id`) VALUES (1, 1);
+INSERT INTO `Playlist_has_Trail` (`playlist_id`, `trail_id`) VALUES (1, 2);
+
+COMMIT;
+
