@@ -1,5 +1,6 @@
 package com.mattaldrete.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -34,6 +35,28 @@ public class Playlist {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+
+//	Adders and Removers
+	public void addTrail(Trail trail) {
+
+		if (trails == null) {
+			trails = new ArrayList<>();
+		}
+
+		if (!trails.contains(trail)) {
+			trails.add(trail);
+		}
+	}
+
+	public void removeTrail(Trail trail) {
+
+		if (trails != null) {
+			trails.remove(trail);
+		}
+
+	}
+
+//	Getters and Setters
 
 	public Integer getId() {
 		return id;
