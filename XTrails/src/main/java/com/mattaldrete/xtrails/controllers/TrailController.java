@@ -53,7 +53,7 @@ public class TrailController {
 	}
 	
 	@GetMapping("trails/getAll")
-	public List<Trail> getallTrails() {
+	public List<Trail> getAllTrails() {
 		return trailRepo.findAll();
 	}
 	

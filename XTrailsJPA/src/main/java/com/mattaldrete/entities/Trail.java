@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "trail")
 public class Trail {
@@ -57,6 +59,7 @@ public class Trail {
 	@JoinColumn(name = "location_id")
 	private Location location;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "trails")
 	private List<Playlist> playlists;
 

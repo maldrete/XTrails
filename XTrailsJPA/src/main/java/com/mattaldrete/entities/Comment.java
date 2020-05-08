@@ -30,6 +30,7 @@ public class Comment {
 	private User user;
 
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "trail_id")
 	private Trail trail;
