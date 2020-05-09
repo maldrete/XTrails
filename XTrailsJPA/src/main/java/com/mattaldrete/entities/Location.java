@@ -28,7 +28,7 @@ public class Location {
 
 	@OneToOne(mappedBy = "location")
 	private Trail trail;
-	
+
 	@JsonIgnore
 	@OneToOne(mappedBy = "location")
 	private User user;
@@ -117,11 +117,11 @@ public class Location {
 	public String toString() {
 		return "Location [id=" + id + ", city=" + city + ", park=" + park + ", state=" + state + ", longitude="
 				+ longitude + ", latitude=" + latitude + ", county=" + county + ", street=" + street + ", zipcode="
-				+ zipcode + ", user=" + user + "]";
+				+ zipcode + ", trail=" + trail + "]";
 	}
 
 	public Location(Integer id, String city, String park, String state, Double longitude, Double latitude,
-			String county, String street, Integer zipcode, User user) {
+			String county, String street, Integer zipcode, Trail trail, User user) {
 		super();
 		this.id = id;
 		this.city = city;
@@ -132,6 +132,7 @@ public class Location {
 		this.county = county;
 		this.street = street;
 		this.zipcode = zipcode;
+		this.trail = trail;
 		this.user = user;
 	}
 

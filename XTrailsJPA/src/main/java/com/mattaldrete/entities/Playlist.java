@@ -31,7 +31,7 @@ public class Playlist {
 	@JoinTable(name = "playlist_has_trail", joinColumns = @JoinColumn(name = "playlist_id"), inverseJoinColumns = @JoinColumn(name = "trail_id"))
 	private List<Trail> trails;
 
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -109,7 +109,7 @@ public class Playlist {
 	@Override
 	public String toString() {
 		return "Playlist [id=" + id + ", name=" + name + ", description=" + description + ", hashtags=" + hashtags
-				+ ", trails=" + trails + ", user=" + user + "]";
+				+ ", trails=" + trails + "]";
 	}
 
 	public Playlist(Integer id, String name, String description, String hashtags, List<Trail> trails, User user) {
