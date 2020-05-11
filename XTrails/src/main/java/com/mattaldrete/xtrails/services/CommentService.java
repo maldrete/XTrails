@@ -8,6 +8,6 @@ public interface CommentService {
 	
 	Comment updateComment(Comment updatedComment);
 	
-	Comment deleteComent(Integer id);
+	Boolean deleteComent(Integer id);
 
 }
