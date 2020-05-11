@@ -20,9 +20,23 @@ public class PlaylistServiceImpl implements PlaylistService {
 	}
 
 	@Override
-	public Playlist update(Playlist playlist) {
-		// TODO Auto-generated method stub
-		return null;
+	public Playlist update(Playlist updatedPlaylist) {
+		Playlist managedPlaylist = playlistRepo.findById(updatedPlaylist.getId()).get();
+		
+		if (updatedPlaylist.getName() != null) {
+			managedPlaylist.setName(updatedPlaylist.getName());
+		}
+		if (updatedPlaylist.getDescription() != null) {
+			managedPlaylist.setDescription(updatedPlaylist.getDescription());
+		}
+		
+		if (updatedPlaylist.getHashtags() != null) {
+			managedPlaylist.setHashtags(updatedPlaylist.getHashtags());
+		}
+		
+		playlistRepo.saveAndFlush(updatedPlaylist);
+		
+		return updatedPlaylist;
 	}
 
 }

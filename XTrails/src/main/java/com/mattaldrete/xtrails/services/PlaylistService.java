@@ -7,5 +7,6 @@ public interface PlaylistService {
 	public Playlist createPlaylist(Playlist newPlaylist);
 	
 	public Playlist update(Playlist playlist);
+	
 
 }
