@@ -51,6 +51,7 @@ public class Trail {
 	private String weather;
 	private String exercise;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "trail")
 	private List<Comment> comment;
 

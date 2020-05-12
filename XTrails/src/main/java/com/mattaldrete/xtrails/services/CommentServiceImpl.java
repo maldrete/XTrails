@@ -1,12 +1,15 @@
 package com.mattaldrete.xtrails.services;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mattaldrete.entities.Comment;
 import com.mattaldrete.xtrails.repositories.CommentRepository;
 
+@Service
 public class CommentServiceImpl implements CommentService {
 
 	@Autowired
@@ -14,6 +17,8 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public Comment createComment(Comment newComment) {
+		LocalDate dateCreated = LocalDate.now();
+		newComment.setDatePosted(dateCreated);
 		Comment commentCreated = commentRepo.saveAndFlush(newComment);
 		return commentCreated;
 	}
@@ -21,7 +26,8 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Comment updateComment(Comment updatedComment) {
 		Comment managedComment = commentRepo.findById(updatedComment.getId()).get();
-		if (updatedComment != null) {
+		
+		if (updatedComment.getActualComment() != null) {
 			managedComment.setActualComment(updatedComment.getActualComment());
 		}
 		return managedComment;
