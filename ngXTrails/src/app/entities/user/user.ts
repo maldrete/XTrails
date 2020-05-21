@@ -1,4 +1,7 @@
 import { Comment } from '../comment/comment';
+import { Playlist } from '../playlist/playlist';
+import { Location } from '../location/location';
+
 
 export class User {
   // F I E L D S

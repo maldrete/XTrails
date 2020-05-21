@@ -11,7 +11,7 @@ export class Comment {
   constructor(
     id?: number,
     actualComment?: string,
-    user?: user.User,
+    user?: User,
     trail?: trail,
     datePosted?: Date
   ) {
