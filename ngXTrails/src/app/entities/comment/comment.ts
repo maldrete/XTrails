@@ -1,5 +1,5 @@
 import { User } from '../user/user';
-import { threadId } from 'worker_threads';
+
 
 export class Comment {
   id: number;
@@ -11,7 +11,7 @@ export class Comment {
   constructor(
     id?: number,
     actualComment?: string,
-    user?: User,
+    user?: user.User,
     trail?: trail,
     datePosted?: Date
   ) {
@@ -21,6 +21,4 @@ export class Comment {
     this.trail = trail;
     this.datePosted = datePosted;
   }
-
-
 }

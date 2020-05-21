@@ -1,3 +1,4 @@
+import { Comment } from '../comment/comment';
 
 export class User {
   // F I E L D S
