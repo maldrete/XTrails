@@ -1,5 +1,6 @@
 import { User } from '../user/user';
 import { zip } from 'rxjs';
+import { Trail } from '../trail/trail';
 
 export class Location {
   id: number;
@@ -11,7 +12,7 @@ export class Location {
   county: string;
   street: string;
   zipcode: number;
-  trail: trail;
+  trail: Trail;
   user: User;
 
 
@@ -24,7 +25,7 @@ export class Location {
     county?: string,
     street?: string,
     zipcode?: number,
-    trail?: trail,
+    trail?: Trail,
     user?: User
   ) {
     this.id = id;
