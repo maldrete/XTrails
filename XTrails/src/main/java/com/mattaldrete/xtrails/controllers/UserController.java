@@ -41,10 +41,10 @@ public class UserController {
 		return user;
 	}
 
-	@GetMapping("users")
-	public List<User> getAllUsers() {
-		return userSvc.getAllUsers();
-	}
+//	@GetMapping("users")
+//	public List<User> getAllUsers() {
+//		return userSvc.getAllUsers();
+//	}
 
 	@DeleteMapping("users/{username}")
 	public User deactivateUser(@PathVariable String username, Principal principal) {
@@ -66,5 +66,11 @@ public class UserController {
 		}
 		return user;
 	}
+	
+	@GetMapping("users")
+	public List<User> getAllUsers() {
+		return userSvc.getAllUsers();
+	}
+	
 
 }
