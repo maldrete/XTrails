@@ -32,8 +32,25 @@ export class UserService {
         return throwError(err);
       })
     )
+  }
 
+  updateUser(user: User): Observable<User> {
+    const credentials = this.authSvc.getCredentials();
 
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}`
+      })
+    };
+
+    return this.http.put<User>(this.baseURL, user, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log('user.service.updateUser(): Error updating user');
+        console.log(err);
+        return throwError(err);
+      })
+    )
   }
 
 
