@@ -10,7 +10,11 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
+
+  // option + F12 (open declaration info)
+
   private baseURL = environment.baseUrl + 'api/me';
+  private adminURL = environment.baseUrl + 'api/users';
 
   constructor(private http: HttpClient, private authSvc: AuthService) { }
 
@@ -54,6 +58,23 @@ export class UserService {
   }
 
 
+  deactivateUser(user: User): Observable<User> {
+    const credentials = this.authSvc.getCredentials();
 
-
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}`
+      })
+    };
+    // delete only takes two paramters
+    //
+    return this.http.delete<User>(this.adminURL, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log('user.service.deactivateUser(): Error deacivating user');
+        console.log(err);
+        return throwError(err);
+      })
+    )
+  }
 }
