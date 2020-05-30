@@ -1,10 +1,7 @@
 .largest {
-  background-color: blueviolet;
   height: 100vh;
 }
 .left {
-  /* float: left; */
-  background-color: red;
   height: 100vh;
   width: 100%;
   border-right: 1px solid black;
@@ -14,12 +11,12 @@
   /* float: right; */
   height: 100vh;
   width: 100%;
-  background-color: teal;
+  background-color: #cddbe7;
 }
 
 .banner {
-  background-color: black;
-  color: white;
+  color: black;
+  font-family: sans-serif;
   text-align: center;
   width: 100%;
   top: 50%;
@@ -31,13 +28,15 @@
   width: 100%;
   max-height: 90%;
   position: relative;
-  top: 20%;
+  top: 30%;
 }
 
 .header {
   border: 1px solid black;
   text-align: center;
-  background-color: #6993b8;
+  background-color: #203344;
+
+  color: white;
 }
 
 button {
@@ -56,6 +55,8 @@ button {
   outline: none;
   outline-color: transparent;
   font-family: sans-serif;
+  /* font-weight: 3em; */
+
 }
 
 input:focus {
@@ -67,5 +68,5 @@ input:focus {
   border-bottom: 2px solid black;
   box-shadow: 0 0.2px 0 0 black;
   border-radius: 0;
-  color: aliceblue;
+  color: black;
 }

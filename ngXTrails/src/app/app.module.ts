@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './components/register/register.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

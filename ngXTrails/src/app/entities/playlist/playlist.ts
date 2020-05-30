@@ -1,12 +1,13 @@
 import { User } from '../user/user';
-import { TransitiveCompileNgModuleMetadata } from '@angular/compiler';
+import { Trail } from '../trail/trail';
 
 export class Playlist {
+  // F I E L D S
   id: number;
   name: string;
   description: string;
   hashtags: string;
-  trails: trail;
+  trails: Trail[];
   user: User;
 
   constructor(
@@ -14,7 +15,7 @@ export class Playlist {
     name?: string,
     description?: string,
     hashtags?: string,
-    trails?: trail,
+    trails?: Trail[],
     user?: User
   ) {
     this.id = id;
