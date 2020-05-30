@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+/*
+      Intsall with this command then import above
+ npm install --save bootstrap
+ */

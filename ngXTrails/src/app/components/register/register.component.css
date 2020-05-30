@@ -1,0 +1,19 @@
+.row {
+  background-color: aqua;
+}
+
+.col-sm-6 {
+  background-color: aqua;
+}
+
+.left {
+  /* float: left; */
+  height: 100%;
+  width: 100%;
+}
+
+.right {
+  /* float: right; */
+  height: 100%;
+  width: 100%;
+}
