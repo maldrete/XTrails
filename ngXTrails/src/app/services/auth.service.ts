@@ -9,6 +9,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class AuthService {
   private baseURL = environment.baseUrl + 'api/me';
+  private authURL = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -40,7 +41,7 @@ export class AuthService {
 
   register(user) {
     // create request to register a new account
-    return this.http.post(this.baseURL + 'register', user)
+    return this.http.post(this.authURL + 'register', user)
       .pipe(
         catchError((err: any) => {
           console.log(err);

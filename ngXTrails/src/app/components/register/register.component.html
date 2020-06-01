@@ -10,7 +10,7 @@
         <div class="header">
           <h2>Personal Information</h2>
         </div>
-        <form #registerForm="ngForm">
+        <form #Form="ngForm">
           <div>
             <label>Username</label>
             <input class="field-input form-control" type="text" name="username" ngModel />
@@ -27,7 +27,7 @@
             <label>City</label>
             <input class="field-input form-control" type="text" name="location" ngModel />
           </div>
-          <button type="button" class="btn btn-primary" (click)="register(registerForm)">Create
+          <button type="button" class="btn btn-primary" (click)="register(Form)">Create
             Account</button>
         </form>
       </div>
