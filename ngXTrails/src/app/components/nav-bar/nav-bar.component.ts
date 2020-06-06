@@ -15,7 +15,10 @@ export class NavBarComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log(this.checkLoginStatus());
+
+  }
 
   login(): void {
     this.authService.login(this.username, this.password).subscribe(
@@ -23,11 +26,18 @@ export class NavBarComponent implements OnInit {
         this.itWorked = good;
         console.log(this.itWorked);
         console.log("User Logged in");
+        console.log(this.checkLoginStatus());
+
+
       },
       err => {
         console.log("failed to login");
       }
     )
+  }
+
+  checkLoginStatus(): boolean {
+    return this.authService.checkLogin();
   }
 
 }
