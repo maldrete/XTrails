@@ -70,3 +70,8 @@ input:focus {
   border-radius: 0;
   color: black;
 }
+
+form {
+  margin: auto;
+  margin-top: 1em;
+}
