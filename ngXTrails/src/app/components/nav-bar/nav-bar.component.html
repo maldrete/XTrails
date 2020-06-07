@@ -16,17 +16,17 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Create Account</a>
+        <li class="nav-item" (click)="navigateToRegister()">
+          <a class="nav-link">Create Account</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0" id="loginForm">
-        <input class="form-control mr-sm-2" type="text" placeholder="Username"
-               [(ngModel)]="username" name="username">
+      <form class="form-inline my-2 my-lg-0" #loginform="ngForm">
+        <input class="form-control mr-sm-2" type="text" placeholder="Username" name="username"
+               ngModel>
         <input class="form-control mr-sm-2" type="password" placeholder="Password" name="password"
-               [(ngModel)]="password">
+               ngModel>
         <button class="btn btn-outline-info my-2 my-sm-0" type="submit"
-                (click)="login()">Login</button>
+                (click)="login(loginform)">Login</button>
       </form>
     </div>
   </nav>
@@ -48,11 +48,11 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Update Account</a>
+        <li class="nav-item" (click)="navigateToUpdateUser()">
+          <a class="nav-link">Update Account</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" href="#" (click)="logout()">Logout</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" id="loginForm">
