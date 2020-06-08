@@ -3,6 +3,8 @@ import { User } from 'src/app/entities/user/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { NgForm, FormGroup } from '@angular/forms';
+import { getLocaleFirstDayOfWeek } from '@angular/common';
+import { log } from 'util';
 
 @Component({
   selector: 'app-nav-bar',
@@ -25,12 +27,14 @@ export class NavBarComponent implements OnInit {
   }
 
   login(form: NgForm): void {
-    const user: User = form.value;
-    user.email = '';
-    // console.log(form.value);
+    console.log('In Login Method');
+    console.log();
+    this.username = form.value.username;
+    this.password = form.value.username;
 
+    console.log('username: ' + this.username + ' password: ' + this.password);
 
-    this.authService.login(user.username, user.password).subscribe(
+    this.authService.login(this.username, this.password).subscribe(
       good => {
         this.itWorked = good;
         console.log("Login was" + this.itWorked);
@@ -41,10 +45,6 @@ export class NavBarComponent implements OnInit {
       },
       err => {
         console.log("failed to login");
-        console.log("username " + this.username);
-        console.log("password " + this.password);
-
-
       }
     )
   }
