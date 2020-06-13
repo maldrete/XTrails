@@ -8,6 +8,6 @@ public interface LocationService {
 	
 	public Location updateLocation(Location updatedLocation);
 	
-	
+	public Location getLocation(int id);
 
 }

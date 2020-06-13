@@ -21,7 +21,7 @@ import com.mattaldrete.xtrails.repositories.UserRepository;
 import com.mattaldrete.xtrails.services.TrailService;
 
 @RestController
-@RequestMapping(path = "api")
+//@RequestMapping(path = "api")
 @CrossOrigin({ "*", "http://localhost:4289" })
 
 public class TrailController {
