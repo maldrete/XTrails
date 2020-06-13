@@ -39,13 +39,17 @@ public class UserServiceIMPL implements UserService {
 		if (updatedUser.getEmail() != null) {
 			oldUser.setEmail(updatedUser.getEmail());
 		}
-
-		if (updatedUser.getPassword() != null) {
-			System.out.println("hello im in password");
-			String encodedPW = encoder.encode(updatedUser.getPassword());
-			oldUser.setPassword(encodedPW); // only persist encoded password
-
+		
+		if (updatedUser.getLocation().getCity() != null) {
+			oldUser.getLocation().setCity(updatedUser.getLocation().getCity());;
 		}
+
+//		if (updatedUser.getPassword() != null) {
+//			System.out.println("hello im in password");
+//			String encodedPW = encoder.encode(updatedUser.getPassword());
+//			oldUser.setPassword(encodedPW); // only persist encoded password
+//		}
+		
 		userRepo.saveAndFlush(oldUser);
 		return oldUser;
 	}

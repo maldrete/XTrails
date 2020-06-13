@@ -50,10 +50,17 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(this.user).subscribe(
       good => {
-        console.log("user created");
-        this.router.navigateByUrl('/home');
-      }
-    )
+        this.authService.login(this.user.username, this.user.password).subscribe(
+          good => {
+            this.router.navigateByUrl('/home');
+          },
+          bad => {
+            console.log('failed to login');
+          });
+      },
+      bad => {
+        console.error("Failed to Register");
+      });
   }
 
 }
