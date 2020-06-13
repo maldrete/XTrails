@@ -72,4 +72,17 @@ public class UserServiceIMPL implements UserService {
 
 	}
 
+	@Override
+	public boolean deleteUser(String username) {
+		User managedUser = userRepo.findByUsername(username);
+		boolean deleted = false;
+		userRepo.delete(managedUser);
+		
+		if(managedUser != null) {
+//			System.err.println(managedUser);
+			deleted = true;
+		}
+		return deleted;
+	}
+
 }

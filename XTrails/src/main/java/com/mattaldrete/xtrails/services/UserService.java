@@ -16,6 +16,9 @@ public interface UserService {
 	
 	public Boolean deactivateUser(String username);
 	
+	// Actually deletes
+	public boolean deleteUser(String username);
+	
 	public List<User> getAllUsers();
 
 }

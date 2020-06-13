@@ -43,7 +43,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Playlist> playist;
 
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "location_id")
 	private Location location;

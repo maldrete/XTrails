@@ -46,15 +46,25 @@ public class UserController {
 //		return userSvc.getAllUsers();
 //	}
 
+//	@DeleteMapping("users/{username}")
+//	public User deactivateUser(@PathVariable String username, Principal principal) {
+//		Boolean deactivated = false;
+//		User user = userSvc.findByUsername(username);
+//		if (userSvc.findByUsername(principal.getName()).getRole().equals("admin")) {
+//			deactivated = userSvc.deactivateUser(username);
+//
+//		}
+//		return user;
+//	}
+	
+	// Actually Delete User for building purposes
 	@DeleteMapping("users/{username}")
-	public User deactivateUser(@PathVariable String username, Principal principal) {
-		Boolean deactivated = false;
-		User user = userSvc.findByUsername(username);
+	public Boolean deactivateUser(@PathVariable String username, Principal principal) {
 		if (userSvc.findByUsername(principal.getName()).getRole().equals("admin")) {
-			deactivated = userSvc.deactivateUser(username);
-
+			return userSvc.deleteUser(username);
+		} else {
+			return false;
 		}
-		return user;
 	}
 
 	@PutMapping("users/{username}")

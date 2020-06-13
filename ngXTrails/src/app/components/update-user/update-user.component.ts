@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/entities/user/user';
 import { Location } from 'src/app/entities/location/location';
 import { RouterModule, Router } from '@angular/router';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'app-update-user',
@@ -12,8 +13,9 @@ import { RouterModule, Router } from '@angular/router';
 export class UpdateUserComponent implements OnInit {
 
   user = new User();
+  location = new Location();
 
-  constructor(private userService: UserService,
+  constructor(private userService: UserService, private locationService: LocationService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -24,15 +26,24 @@ export class UpdateUserComponent implements OnInit {
     this.userService.getUser().subscribe(
       user => {
         this.user = user;
-        if (this.user.location === null) {
-          this.user.location.city = 'no location';
-        }
         // console.log(user);
       },
       bad => {
         console.error("failed to retrieve user");
       }
     )
+  }
+
+  retrieveLocation(user: User) {
+    this.locationService.getLocation(user.location.id).subscribe(
+      location => {
+        this.location = location;
+        if (this.user.location.city === null) {
+          this.user.location.city = 'empty';
+        }
+      }
+    )
+
   }
 
   updateUser() {
