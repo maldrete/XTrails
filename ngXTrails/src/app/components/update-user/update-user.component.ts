@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/entities/user/user';
+import { Location } from 'src/app/entities/location/location';
 import { RouterModule, Router } from '@angular/router';
 
 @Component({
@@ -23,7 +24,10 @@ export class UpdateUserComponent implements OnInit {
     this.userService.getUser().subscribe(
       user => {
         this.user = user;
-        console.log(user);
+        if (this.user.location === null) {
+          this.user.location.city = 'no location';
+        }
+        // console.log(user);
       },
       bad => {
         console.error("failed to retrieve user");
@@ -45,3 +49,4 @@ export class UpdateUserComponent implements OnInit {
   }
 
 }
+
