@@ -16,10 +16,16 @@ export class UpdateUserComponent implements OnInit {
   location = new Location();
 
   constructor(private userService: UserService, private locationService: LocationService,
-    private router: Router) { }
+    private router: Router) {
+    // Give location.city inital value when page loads
+    let location: Location = new Location();
+    location.city = 'inital value';
+    this.user.location = location;
+  }
 
   ngOnInit(): void {
     this.retrieveUser();
+
   }
 
   retrieveUser() {
